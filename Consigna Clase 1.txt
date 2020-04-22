@@ -1,0 +1,31 @@
+* De lo último que vimos en clase (adjunto Zip), lograr que al hacer clic en el sobre abra el correo y deje listo para enviar mail
+* Además que quede predeterminada el 
+    * para:
+    * asunto:
+    * cuerpo del mensaje
+
+les dejo unas pistas:
+
+fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.putExtra(Intent.EXTRA_EMAIL  , "cosme.fulanito@fox.com");
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "DUFF");
+                emailIntent.putExtra(Intent.EXTRA_TEXT   , "Mi Vieja Mula ya no es lo que era...");
+                emailIntent.setType("plain/text");
+
+               try{ //que pasa si no hay ninguna app de correo????
+                startActivity(Intent.createChooser(emailIntent, "Choose an Email client :")); //esto me permite elegir si hay mas de una app de correo
+
+            }catch (Exception e){ //ActivityNOtFoudExc....
+
+//Toast...
+               }
+
+               }
+        });
+
+
+Para poder hacer van a tener que previamente tener una cuenta de google en el celu virtual, pueden usar su cuenta de gmail , pero les recomiendo crear una para la materia.
+en caso que lo hagan en su celu no necesitan ese paso

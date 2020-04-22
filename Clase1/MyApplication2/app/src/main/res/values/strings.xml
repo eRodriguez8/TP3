@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application taller 5</string>
+    <string name="action_settings">Configuracion</string>
+    <string name="hola">Hello  Word!!!</string>
+    <string name="action_perfil">Profile</string>
+    <string name="miBoton">Mi_Boton</string>
+</resources>

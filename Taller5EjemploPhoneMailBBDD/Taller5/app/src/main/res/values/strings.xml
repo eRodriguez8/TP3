@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Taller5</string>
+    <string name="action_settings">Opcion1</string>
+    <string name="action_settings2">Opcion2</string>
+    <string name="action_settings3">Opcion3</string>
+    <string name="lbNombre">Nombre</string>
+    <string name="lbApellido">Apellido</string>
+    <string name="title_activity_pantalla2">Detalle</string>
+    <string name="btnVolver">Volver</string>
+    <string name="lbwelcome">Bienvenido!, </string>
+    <string name="btnDial">Llamar a Casa</string>
+    <string name="title_activity_prueba">PruebaActivity</string>
+    <string name="btnPagina2">Boton</string>
+    <string name="editar">Editar</string>
+</resources>
