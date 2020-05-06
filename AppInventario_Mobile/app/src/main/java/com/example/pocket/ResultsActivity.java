@@ -1,10 +1,11 @@
 package com.example.pocket;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.widget.TextView;
 import android.app.ProgressDialog;
-import android.os.Handler;
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ResultsActivity extends AppCompatActivity {
 
@@ -28,8 +29,8 @@ public class ResultsActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             public void run() {
                 progress.dismiss();
-                personName.setText(data.getString(MainActivity.PERSONNAME_KEY));
-                id.setText(data.getString(MainActivity.ID_KEY));
+                personName.setText(data.getString(ScanActivity.PERSONNAME_KEY));
+                id.setText(data.getString(ScanActivity.ID_KEY));
             }
         }, 0);
     }
