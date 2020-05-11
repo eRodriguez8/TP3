@@ -16,15 +16,7 @@ import com.google.zxing.integration.android.IntentResult;
 import org.json.JSONObject;
 
 public class ScanActivity extends AppCompatActivity {
-    public static String PERSONNAME_KEY = "PersonName";
-    public static String ID_KEY = "ID";
-    public static String STATUS_KEY = "Status";
-    public static String STATUS_BOOL_KEY = "StatusBool";
-    public static int LASTNAME_ARRAY_KEY = 1;
-    public static int FIRSTNAME_ARRAY_KEY = 2;
-    public static int ID_ARRAY_KEY = 4;
-    public static String CHAR_SPLIT = "@";
-    public static int STATUS_VALUE = 0;
+    public static final String BARCODE = "";
     public static String SCAN_ERROR_TEXT = "Hubo un error al escanear. Por favor, intentelo nuevamente.";
     private Button btnScan;
     private TextView welcome;
@@ -50,7 +42,7 @@ public class ScanActivity extends AppCompatActivity {
     public void initializeScanner(View view)
     {
         IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.PDF_417);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.EAN_13);
         integrator.setPrompt("Escanear Elemento");
         integrator.setBeepEnabled(true);
         integrator.setBarcodeImageEnabled(true);
@@ -72,36 +64,10 @@ public class ScanActivity extends AppCompatActivity {
     }
     private void BuildAndSendData(String data)
     {
-        String personName;
-        String lastName;
-        String firstName;
-        String id;
-        String status = "";
-        Boolean statusBool;
-        JSONObject array;
-        String[] parsedData = data.split(CHAR_SPLIT);
-
-        if (parsedData.length == 9) // New Argentinian ID
-        {
-            lastName = parsedData[LASTNAME_ARRAY_KEY];
-            firstName = parsedData[FIRSTNAME_ARRAY_KEY];
-            id = parsedData[ID_ARRAY_KEY];
-        }
-        else // Old Argentinian ID
-        {
-            lastName = parsedData[4];
-            firstName = parsedData[5];
-            id = parsedData[1].trim();
-        }
-        personName = lastName + " " + firstName;statusBool = STATUS_VALUE > 0;
-
         Intent dataIntent = new Intent(this, ResultsActivity.class);
         Bundle dataBundle = new Bundle();
 
-        dataBundle.putString(PERSONNAME_KEY, personName);
-        dataBundle.putString(ID_KEY, id);
-        dataBundle.putString(STATUS_KEY, status);
-        dataBundle.putBoolean(STATUS_BOOL_KEY, statusBool);
+        dataBundle.putString(BARCODE, data);
 
         dataIntent.putExtras(dataBundle);
 

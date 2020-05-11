@@ -18,7 +18,6 @@ public class ResultsActivity extends AppCompatActivity {
 
         final Bundle data = getIntent().getExtras();
         personName = findViewById(R.id.personName);
-        id = findViewById(R.id.idValue);
 
         final ProgressDialog progress = new ProgressDialog(this);
         progress.setTitle("Por favor espere");
@@ -29,8 +28,7 @@ public class ResultsActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             public void run() {
                 progress.dismiss();
-                personName.setText(data.getString(ScanActivity.PERSONNAME_KEY));
-                id.setText(data.getString(ScanActivity.ID_KEY));
+                personName.setText(data.getString(ScanActivity.BARCODE));
             }
         }, 0);
     }
