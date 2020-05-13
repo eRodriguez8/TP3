@@ -1,4 +1,4 @@
-package com.example.pocket;
+package com.narrowhawk.pocket;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.pocket", appContext.getPackageName());
+        assertEquals("com.narrowhawk.pocket", appContext.getPackageName());
     }
 }
