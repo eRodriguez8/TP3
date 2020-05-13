@@ -47,6 +47,8 @@ public class ScanActivity extends AppCompatActivity {
         integrator.setPrompt("Escanear Elemento");
         integrator.setBeepEnabled(true);
         integrator.setBarcodeImageEnabled(true);
+        integrator.setCaptureActivity(AnyOrientationCaptureActivity.class);
+        integrator.setOrientationLocked(false);
         integrator.initiateScan();
     }
 
