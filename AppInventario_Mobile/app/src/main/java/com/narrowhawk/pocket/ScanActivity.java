@@ -1,4 +1,4 @@
-package com.example.pocket;
+package com.narrowhawk.pocket;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,13 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.json.JSONObject;
-
 public class ScanActivity extends AppCompatActivity {
     public static final String BARCODE = "";
     public static String SCAN_ERROR_TEXT = "Hubo un error al escanear. Por favor, intentelo nuevamente.";
     private Button btnScan;
     private TextView welcome;
+    private TextView document;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,9 @@ public class ScanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scan);
         final Bundle data = getIntent().getExtras();
         welcome = findViewById(R.id.welcome);
-        welcome.setText("Bienvenido/a " + data.getString(MainActivity.LEGAJO));
+        welcome.setText("Bienvenido/a " + data.getString("LEGAJO"));
+        document = findViewById(R.id.document);
+        document.setText("Documento " + data.getString("DOCUMENTO"));
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         this.btnScan = findViewById(R.id.btnLogin);
@@ -46,6 +47,8 @@ public class ScanActivity extends AppCompatActivity {
         integrator.setPrompt("Escanear Elemento");
         integrator.setBeepEnabled(true);
         integrator.setBarcodeImageEnabled(true);
+        integrator.setCaptureActivity(AnyOrientationCaptureActivity.class);
+        integrator.setOrientationLocked(false);
         integrator.initiateScan();
     }
 

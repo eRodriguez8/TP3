@@ -1,4 +1,4 @@
-package com.example.pocket;
+package com.narrowhawk.pocket;
 
 import org.junit.Test;
 
