@@ -1,4 +1,4 @@
-package com.narrowhawk.pocket;
+package com.narrowhawk.pocket.utils;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.os.Handler;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.narrowhawk.pocket.R;
+import com.narrowhawk.pocket.activities.MainActivity;
 
 public class SplashScreen extends AppCompatActivity {
     private static int SPLASH_SCREEN_TIME_OUT=3000;

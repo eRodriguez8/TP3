@@ -1,4 +1,4 @@
-package com.narrowhawk.pocket;
+package com.narrowhawk.pocket.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.narrowhawk.pocket.R;
 
 public class ResultsActivity extends AppCompatActivity {
 

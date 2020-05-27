@@ -4,17 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScanActivity">
+    tools:context=".activities.ScanActivity">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dígito"
+        android:textColor="#007CC0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="299dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="158dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Dígito"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="333dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#007CC0"
+        android:text="Escanear"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="331dp" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="180dp"
         android:layout_height="0dp"
-        android:layout_marginTop="452dp"
+        android:layout_marginTop="664dp"
         android:background="#007CC0"
         android:clickable="true"
         android:focusable="true"
-        android:text="NUEVA SOLICITUD"
+        android:text="GRABAR"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textStyle="bold"
@@ -27,35 +58,191 @@
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginLeft="177dp"
-        android:layout_marginTop="129dp"
-        android:layout_marginEnd="175dp"
-        android:layout_marginRight="175dp"
-        android:layout_marginBottom="280dp"
         android:textColor="#007CC0"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="102dp" />
+
+    <TextView
+        android:id="@+id/welcome2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#007CC0"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="115dp"
+        tools:layout_editor_absoluteY="159dp" />
 
     <TextView
         android:id="@+id/document"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginLeft="177dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="175dp"
-        android:layout_marginRight="175dp"
-        android:layout_marginBottom="399dp"
         android:textColor="#007CC0"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="122dp"
+        tools:layout_editor_absoluteY="46dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="414dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="8dp"
+        android:background="#007CC0"
+        android:text=" Conteo Inventario Sega"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Documento"
+        android:textColor="#007CC0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="46dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuario Inventario"
+        android:textColor="#007CC0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="102dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ubicación"
+        android:textColor="#007CC0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="159dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conteo 1/4"
+        android:textColor="#007CC0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="240dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Artículo"
+        android:textColor="#007CC0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="421dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cajas"
+        android:textColor="#007CC0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="11dp"
+        tools:layout_editor_absoluteY="529dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cajas sueltas"
+        android:textColor="#007CC0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="11dp"
+        tools:layout_editor_absoluteY="573dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observaciones"
+        android:textColor="#007CC0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="11dp"
+        tools:layout_editor_absoluteY="614dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text='"." Vacío'
+        android:textColor="#007CC0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="379dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="158dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Artículo"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="458dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="158dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Cajas"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="516dp" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="158dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Cajas sueltas"
+        tools:layout_editor_absoluteX="137dp"
+        tools:layout_editor_absoluteY="562dp" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="158dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Observaciones"
+        tools:layout_editor_absoluteX="137dp"
+        tools:layout_editor_absoluteY="608dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#007CC0"
+        android:text="Escanear"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="458dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.narrowhawk.pocket;
+package com.narrowhawk.pocket.requests;
 
 import android.os.AsyncTask;
 

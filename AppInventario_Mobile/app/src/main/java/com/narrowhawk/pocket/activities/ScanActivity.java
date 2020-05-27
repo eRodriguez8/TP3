@@ -1,4 +1,4 @@
-package com.narrowhawk.pocket;
+package com.narrowhawk.pocket.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.narrowhawk.pocket.R;
+import com.narrowhawk.pocket.activities.AnyOrientationCaptureActivity;
+import com.narrowhawk.pocket.activities.ResultsActivity;
 
 public class ScanActivity extends AppCompatActivity {
     public static final String BARCODE = "";

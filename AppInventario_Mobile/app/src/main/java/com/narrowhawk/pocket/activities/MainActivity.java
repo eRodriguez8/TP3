@@ -1,4 +1,4 @@
-package com.narrowhawk.pocket;
+package com.narrowhawk.pocket.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.narrowhawk.pocket.requests.HttpGetRequest;
+import com.narrowhawk.pocket.R;
 
 import java.util.concurrent.ExecutionException;
 
@@ -49,13 +52,9 @@ public class MainActivity extends AppCompatActivity {
             Toast errorToast = Toast.makeText(MainActivity.this, "Por favor ingrese su número de legajo.", Toast.LENGTH_SHORT);
             errorToast.show();
         } else {
-            //Some url endpoint that you may have
-            String myUrl = "https://c4f99f75.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + legajo;
-            //String to place our result in
+            String myUrl = "https://f11e31bc.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + legajo;
             String result;
-            //Instantiate new instance of our class
             HttpGetRequest getRequest = new HttpGetRequest();
-            //Perform the doInBackground method, passing in our url
             result = getRequest.execute(myUrl).get();
 
             if(result == null) {

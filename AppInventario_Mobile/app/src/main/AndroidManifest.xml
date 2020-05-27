@@ -11,16 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.narrowhawk.pocket.ResultsActivity"></activity>
-        <activity android:name="com.narrowhawk.pocket.ScanActivity"></activity>
-        <activity android:name="com.narrowhawk.pocket.MainActivity"></activity>
-        <activity android:name="com.narrowhawk.pocket.AnyOrientationCaptureActivity"
+        <activity android:name="com.narrowhawk.pocket.activities.ResultsActivity"></activity>
+        <activity android:name="com.narrowhawk.pocket.activities.ScanActivity"></activity>
+        <activity android:name="com.narrowhawk.pocket.activities.MainActivity"></activity>
+        <activity android:name="com.narrowhawk.pocket.activities.AnyOrientationCaptureActivity"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
-        <activity android:name="com.narrowhawk.pocket.SplashScreen">
+        <activity android:name="com.narrowhawk.pocket.utils.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
