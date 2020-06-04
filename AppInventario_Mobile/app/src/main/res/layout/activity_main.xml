@@ -7,7 +7,7 @@
     tools:context=".activities.MainActivity">
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSend"
         android:layout_width="180dp"
         android:layout_height="0dp"
         android:layout_marginTop="460dp"
@@ -36,7 +36,7 @@
         android:ems="10"
         android:hint="Número de legajo..."
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        app:layout_constraintBottom_toTopOf="@+id/btnSend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
