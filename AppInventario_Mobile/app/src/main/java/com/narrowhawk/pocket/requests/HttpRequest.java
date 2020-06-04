@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -43,14 +44,23 @@ public class HttpRequest extends AsyncTask<String, Void, String> {
             connection.setConnectTimeout(CONNECTION_TIMEOUT);
 
             if (REQUEST_METHOD.equals("PUT")) {
-                connection.setRequestProperty("Content-Type", "application/json; utf-8");
-                connection.setRequestProperty("Accept", "application/json");
+                connection.setRequestProperty("Content-Type", "application/json");
                 connection.setDoOutput(true);
+                connection.setDoInput(true);
 
-                OutputStreamWriter out = new OutputStreamWriter(
-                        connection.getOutputStream());
-                out.write(REQUEST_BODY);
+                DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+                out.writeBytes(REQUEST_BODY);
+                out.flush();
                 out.close();
+                connection.connect();
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String temp = null;
+                StringBuilder sb = new StringBuilder();
+                while((temp = in.readLine()) != null){
+                    sb.append(temp).append(" ");
+                }
+                jsonResult = sb.toString();
+                in.close();
             } else {
                 //Connect to our url
                 connection.connect();

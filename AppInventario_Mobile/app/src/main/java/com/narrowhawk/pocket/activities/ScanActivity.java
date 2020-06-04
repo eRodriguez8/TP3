@@ -151,7 +151,7 @@ public class ScanActivity extends AppCompatActivity {
         JSONObject json = jsonArray.getJSONObject(contador - 1);
 
         // La procesamos y enviamos a la API
-        String myUrl = "https://ed5e550e4ac9.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
+        String myUrl = "https://0d93ee4e32f0.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
 
         Toast.makeText(this, "antes del body", Toast.LENGTH_LONG).show();
 
@@ -165,22 +165,23 @@ public class ScanActivity extends AppCompatActivity {
         body.put("tipoInventario", json.getString("tipoInventario"));
         body.put("observaciones", observaciones.getText());
         body.put("camadas", json.getInt("camadas"));
-        body.put("iCxHActual", json.getString("iCxHActual"));
         body.put("articulo", articulo.getText());
         body.put("etiqueta", json.getString("etiqueta"));
         body.put("ubicacion", json.getString("ubicacion"));
         body.put("ean13", json.getString("ean13"));
         body.put("descripcion", json.getString("descripcion"));
-        //body.put("registroTotal", json.getInt("posiciones"));
-        //body.put("registroCargado", json.getInt("contador"));
+        body.put("registroTotal", 2);//json.getInt("posiciones")); // ACA VER PORQUE PINCHA
+        body.put("registroCargado", 1);//json.getInt("contador")); // ACA VER PORQUE PINCHA
 
         String bodyString = body.toString();
 
-        Toast.makeText(this, "body", Toast.LENGTH_LONG).show();
 
         String result;
         HttpRequest putRequest = new HttpRequest("PUT", bodyString);
         result = putRequest.execute(myUrl).get();
+
+        Toast.makeText(this, "Resultado PUT : " + result, Toast.LENGTH_LONG).show();
+
 
         // Incremento al ID siguiente
         contador++;
