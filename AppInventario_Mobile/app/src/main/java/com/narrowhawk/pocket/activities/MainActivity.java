@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             Toast errorToast = Toast.makeText(MainActivity.this, "Por favor ingrese su número de legajo.", Toast.LENGTH_SHORT);
             errorToast.show();
         } else {
-            String myUrl = "https://0d93ee4e32f0.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + legajo;
+            String myUrl = "https://8e9b155425f9.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + legajo;
             String result;
             HttpRequest getRequest = new HttpRequest("GET", null);
             result = getRequest.execute(myUrl).get();
@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 dataIntent.putExtra("LEGAJO", legajo);
                 dataIntent.putExtra("ID_POS_INICIAL", json.getInt("id"));
                 dataIntent.putExtra("UBICACION_INICIAL", json.getString("ubicacion"));
+                dataIntent.putExtra("TIPO_INVENTARIO", json.getString("tipoInventario"));
                 dataIntent.putExtra("POSICIONES", lTotales);
                 dataIntent.putExtra("RESULT", result);
                 startActivity(dataIntent);

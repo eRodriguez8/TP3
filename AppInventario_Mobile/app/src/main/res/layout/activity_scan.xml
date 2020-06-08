@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".activities.ScanActivity">
 
     <Button
@@ -12,19 +13,21 @@
         android:layout_height="0dp"
         android:layout_marginStart="115dp"
         android:layout_marginLeft="115dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="116dp"
         android:layout_marginRight="116dp"
-        android:layout_marginBottom="16dp"
-        android:background="#007CC0"
+        android:background="@drawable/roundedbutton"
         android:clickable="true"
+        android:drawablePadding="16dp"
         android:focusable="true"
         android:text="GRABAR"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtObservations" />
 
     <TextView
         android:id="@+id/document"
@@ -122,12 +125,10 @@
         android:layout_marginTop="17dp"
         android:layout_marginEnd="323dp"
         android:layout_marginRight="323dp"
-        android:layout_marginBottom="58dp"
         android:text="Ubicación"
         android:textColor="#007CC0"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/conteo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -157,19 +158,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="312dp"
-        android:layout_marginRight="312dp"
-        android:layout_marginBottom="112dp"
+        android:layout_marginTop="10dp"
         android:text="Dígito"
         android:textColor="#007CC0"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/conteo" />
 
     <TextView
         android:id="@+id/textView11"
@@ -177,19 +172,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="-1dp"
         android:layout_marginEnd="312dp"
         android:layout_marginRight="312dp"
-        android:layout_marginBottom="22dp"
         android:text='"." Vacío'
         android:textColor="#007CC0"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDigit"
-        app:layout_constraintVertical_bias="0.35000002" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDigit" />
 
     <TextView
         android:id="@+id/textView6"
@@ -197,55 +190,55 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginTop="25dp"
         android:text="Artículo"
         android:textColor="#007CC0"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtArticle"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="28dp"
         android:text="Cajas"
         android:textColor="#007CC0"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtArticle" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
         android:text="Cajas sueltas"
         android:textColor="#007CC0"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBoxes" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginBottom="34dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
         android:text="Observaciones"
         android:textColor="#007CC0"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnSend"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <EditText
         android:id="@+id/txtArticle"
@@ -253,80 +246,82 @@
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginBottom="29dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/white"
         android:ems="10"
         android:hint="Artículo"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/txtBoxes"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/txtDigit"
-        android:layout_width="290dp"
-        android:layout_height="49dp"
+        android:layout_width="287dp"
+        android:layout_height="46dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginBottom="152dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/white"
         android:ems="10"
         android:hint="Dígito"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/txtBoxes"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.35000002" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <EditText
         android:id="@+id/txtBoxes"
-        android:layout_width="158dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="9dp"
+        android:layout_width="305dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/white"
         android:ems="10"
         android:hint="Cajas"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/txtEmptyBoxes"
-        app:layout_constraintStart_toEndOf="@+id/textView8" />
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/txtArticle" />
 
     <EditText
         android:id="@+id/txtEmptyBoxes"
-        android:layout_width="158dp"
-        android:layout_height="46dp"
+        android:layout_width="259dp"
+        android:layout_height="48dp"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="9dp"
+        android:background="@android:color/white"
         android:ems="10"
         android:hint="Cajas sueltas"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/txtObservations"
-        app:layout_constraintStart_toEndOf="@+id/textView9" />
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/txtBoxes" />
 
     <EditText
         android:id="@+id/txtObservations"
-        android:layout_width="158dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="22dp"
+        android:layout_width="256dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
         android:ems="10"
         android:hint="Observaciones"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btnSend"
-        app:layout_constraintStart_toEndOf="@+id/textView10" />
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmptyBoxes" />
 
     <Button
         android:id="@+id/btnScanArticle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginBottom="24dp"
-        android:background="#007CC0"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/roundedbutton"
         android:text="Escanear"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/txtBoxes"
-        app:layout_constraintStart_toEndOf="@+id/txtArticle" />
+        app:layout_constraintStart_toEndOf="@+id/txtArticle"
+        app:layout_constraintTop_toBottomOf="@+id/btnScanDigit" />
 
     <Button
         android:id="@+id/btnScanDigit"
@@ -334,12 +329,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="253dp"
-        android:layout_marginBottom="76dp"
-        android:background="#007CC0"
+        android:layout_marginTop="215dp"
+        android:background="@drawable/roundedbutton"
         android:text="Escanear"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/btnScanArticle"
         app:layout_constraintStart_toEndOf="@+id/txtDigit"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 

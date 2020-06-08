@@ -1,6 +1,7 @@
 package com.narrowhawk.pocket.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -28,6 +29,7 @@ public class ScanActivity extends AppCompatActivity {
     private Button btnScanArticle;
     private Button btnSend;
     private String legajo;
+    private String tipoInventario;
     private TextView user;
     private TextView document;
     private TextView ubication;
@@ -63,6 +65,11 @@ public class ScanActivity extends AppCompatActivity {
         digito = findViewById(R.id.txtDigit);
         cajas = findViewById(R.id.txtBoxes);
         cajasSueltas = findViewById(R.id.txtEmptyBoxes);
+        tipoInventario = data.getString("TIPO_INVENTARIO");
+        if (!tipoInventario.equals("Camadas")) {
+            cajasSueltas.setEnabled(false);
+            cajasSueltas.setBackgroundColor(Color.LTGRAY);
+        }
         observaciones = findViewById(R.id.txtObservations);
         try {
             documentJson = new JSONObject(data.getString("RESULT"));
@@ -151,45 +158,39 @@ public class ScanActivity extends AppCompatActivity {
         JSONObject json = jsonArray.getJSONObject(contador - 1);
 
         // La procesamos y enviamos a la API
-        String myUrl = "https://0d93ee4e32f0.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
-
-        Toast.makeText(this, "antes del body", Toast.LENGTH_LONG).show();
+        String myUrl = "https://8e9b155425f9.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
 
         JSONObject body = new JSONObject();
         body.put("id", json.getInt("id"));
         body.put("idDocumento", json.getInt("idDocumento"));
         body.put("usuarioInventario", legajo);
         body.put("digito", digito.getText());
-        body.put("cajas", cajas.getText());
         body.put("cajasSueltas", cajasSueltas.getText());
         body.put("tipoInventario", json.getString("tipoInventario"));
         body.put("observaciones", observaciones.getText());
-        body.put("camadas", json.getInt("camadas"));
+        body.put("camadas", cajas.getText().toString().matches("") ? 0 : cajas.getText());
         body.put("articulo", articulo.getText());
         body.put("etiqueta", json.getString("etiqueta"));
         body.put("ubicacion", json.getString("ubicacion"));
         body.put("ean13", json.getString("ean13"));
         body.put("descripcion", json.getString("descripcion"));
-        body.put("registroTotal", 2);//json.getInt("posiciones")); // ACA VER PORQUE PINCHA
-        body.put("registroCargado", 1);//json.getInt("contador")); // ACA VER PORQUE PINCHA
+        body.put("registroTotal", posiciones);
+        body.put("registroCargado", contador);
 
         String bodyString = body.toString();
-
 
         String result;
         HttpRequest putRequest = new HttpRequest("PUT", bodyString);
         result = putRequest.execute(myUrl).get();
 
-        Toast.makeText(this, "Resultado PUT : " + result, Toast.LENGTH_LONG).show();
-
-
         // Incremento al ID siguiente
         contador++;
         //validar que no me pasé, si me pasé porque fue la última, VER QUE HACEMOS
         if (contador > posiciones) {
-            Toast.makeText(this, "terminé", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Conteo finalizado.", Toast.LENGTH_LONG).show();
+            Intent dataIntent = new Intent(this, MainActivity.class);
+            startActivity(dataIntent);
         }
-        //Toast.makeText(this, String.valueOf(json.getInt("id")), Toast.LENGTH_LONG).show();
 
         //Actualizo data en la pantalla
         json = jsonArray.getJSONObject(contador - 1);
@@ -200,15 +201,12 @@ public class ScanActivity extends AppCompatActivity {
         cajas.setText("");
         cajasSueltas.setText("");
         observaciones.setText("");
-
-
-        /*Intent dataIntent = new Intent(this, ResultsActivity.class);
-        Bundle dataBundle = new Bundle();
-
-        dataBundle.putString(BARCODE, data);
-
-        dataIntent.putExtras(dataBundle);
-
-        startActivity(dataIntent);*/
+        if (!json.getString("tipoInventario").equals("Camadas")) {
+            cajasSueltas.setEnabled(false);
+            cajasSueltas.setBackgroundColor(Color.LTGRAY);
+        } else {
+            cajasSueltas.setEnabled(true);
+            cajasSueltas.setBackgroundColor(Color.WHITE);
+        }
     }
 }
