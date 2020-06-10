@@ -73,6 +73,7 @@
         android:background="#007CC0"
         android:text=" Conteo Inventario Sega"
         android:textColor="@android:color/white"
+        android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
@@ -242,15 +243,21 @@
 
     <EditText
         android:id="@+id/txtArticle"
-        android:layout_width="288dp"
-        android:layout_height="46dp"
+        android:layout_width="280dp"
+        android:layout_height="88dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="9dp"
         android:background="@android:color/white"
         android:ems="10"
+        android:gravity="top|left"
         android:hint="Artículo"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
+        android:lines="4"
+        android:maxLines="4"
+        android:minLines="1"
+        android:scrollbars="vertical"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -314,9 +321,9 @@
         android:id="@+id/btnScanArticle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="79dp"
         android:background="@drawable/roundedbutton"
         android:text="Escanear"
         android:textColor="@android:color/white"
@@ -335,5 +342,11 @@
         android:textColor="@android:color/white"
         app:layout_constraintStart_toEndOf="@+id/txtDigit"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="203dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

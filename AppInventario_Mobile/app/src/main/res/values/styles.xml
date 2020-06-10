@@ -17,5 +17,4 @@
         <item name="android:background">@drawable/dialog_bg</item>
         <item name="android:textColor">@color/blue</item>
     </style>
-
 </resources>
