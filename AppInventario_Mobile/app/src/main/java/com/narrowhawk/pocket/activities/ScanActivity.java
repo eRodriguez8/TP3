@@ -175,7 +175,7 @@ public class ScanActivity extends AppCompatActivity {
         JSONObject json = jsonArray.getJSONObject(contador - 1);
 
         // La procesamos y enviamos a la API
-        String myUrl = "https://fc9771c892a2.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
+        String myUrl = "https://fdc3cc72568d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
 
         JSONObject body = new JSONObject();
         body.put("id", json.getInt("id"));

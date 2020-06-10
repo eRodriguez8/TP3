@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             Toast errorToast = Toast.makeText(MainActivity.this, "Por favor ingrese su número de legajo.", Toast.LENGTH_SHORT);
             errorToast.show();
         } else {
-            String myUrl = "https://fc9771c892a2.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + legajo;
+            String myUrl = "https://fdc3cc72568d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + legajo;
             HttpRequest getRequest = new HttpRequest("GET", null);
             result = getRequest.execute(myUrl).get();
 
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         })
         .setNegativeButton("No, empezar de cero", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                String myUrl = "https://fc9771c892a2.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + documentId;
+                String myUrl = "https://fdc3cc72568d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + documentId;
 
                 HttpRequest putRequest = new HttpRequest("PUT", "");
                 try {

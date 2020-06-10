@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="115dp"
         android:layout_marginLeft="115dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="116dp"
         android:layout_marginRight="116dp"
         android:background="@drawable/roundedbutton"
@@ -38,6 +38,7 @@
         android:layout_marginTop="55dp"
         android:textColor="#007CC0"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,6 +51,7 @@
         android:layout_marginTop="93dp"
         android:textColor="#007CC0"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,6 +64,7 @@
         android:layout_marginTop="134dp"
         android:textColor="#007CC0"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,9 +74,9 @@
         android:layout_height="39dp"
         android:layout_marginBottom="8dp"
         android:background="#007CC0"
+        android:gravity="center"
         android:text=" Conteo Inventario Sega"
         android:textColor="@android:color/white"
-        android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
@@ -94,7 +97,7 @@
         android:text="Documento"
         android:textColor="#007CC0"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +115,7 @@
         android:text="Usuario Inventario"
         android:textColor="#007CC0"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -129,7 +132,7 @@
         android:text="Ubicación"
         android:textColor="#007CC0"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +150,7 @@
         android:text="Conteo 1/4"
         android:textColor="#007CC0"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -163,7 +166,7 @@
         android:text="Dígito"
         android:textColor="#007CC0"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/conteo" />
 
@@ -179,7 +182,7 @@
         android:text='"." Vacío'
         android:textColor="#007CC0"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -195,7 +198,7 @@
         android:text="Artículo"
         android:textColor="#007CC0"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -205,11 +208,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:text="Cajas"
         android:textColor="#007CC0"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtArticle" />
 
@@ -219,11 +222,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:text="Cajas sueltas"
         android:textColor="#007CC0"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtBoxes" />
 
@@ -233,21 +236,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Observaciones"
         android:textColor="#007CC0"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <EditText
         android:id="@+id/txtArticle"
-        android:layout_width="280dp"
-        android:layout_height="88dp"
+        android:layout_width="381dp"
+        android:layout_height="83dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="5dp"
         android:background="@android:color/white"
         android:ems="10"
         android:gravity="top|left"
@@ -258,6 +261,7 @@
         android:minLines="1"
         android:scrollbars="vertical"
         android:textStyle="bold"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -281,7 +285,7 @@
         android:layout_height="51dp"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:background="@android:color/white"
         android:ems="10"
         android:hint="Cajas"
@@ -295,7 +299,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="1dp"
         android:background="@android:color/white"
         android:ems="10"
         android:hint="Cajas sueltas"
@@ -309,7 +313,7 @@
         android:layout_height="44dp"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:background="@android:color/white"
         android:ems="10"
         android:hint="Observaciones"
@@ -321,32 +325,26 @@
         android:id="@+id/btnScanArticle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="79dp"
+        android:layout_marginStart="239dp"
+        android:layout_marginLeft="239dp"
+        android:layout_marginTop="72dp"
         android:background="@drawable/roundedbutton"
         android:text="Escanear"
         android:textColor="@android:color/white"
-        app:layout_constraintStart_toEndOf="@+id/txtArticle"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/btnScanDigit" />
 
     <Button
         android:id="@+id/btnScanDigit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="215dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="164dp"
         android:background="@drawable/roundedbutton"
         android:text="Escanear"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toEndOf="@+id/txtDigit"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="203dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
