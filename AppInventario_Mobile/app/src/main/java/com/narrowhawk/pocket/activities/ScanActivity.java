@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.narrowhawk.pocket.R;
@@ -100,7 +101,23 @@ public class ScanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    sendData(v);
+                    Toast errorToast;
+                    if (digito.getText().toString().equals("")) {
+                        errorToast = Toast.makeText(ScanActivity.this, "Por favor ingrese dígito", Toast.LENGTH_LONG);
+                        errorToast.show();
+                    } else if (!digito.getText().toString().equals(".")) {
+                        if (cajas.getText().toString().equals("")) {
+                            errorToast = Toast.makeText(ScanActivity.this, "Por favor ingrese cajas", Toast.LENGTH_LONG);
+                            errorToast.show();
+                        } else if (cajasSueltas.getText().toString().equals("")) {
+                            errorToast = Toast.makeText(ScanActivity.this, "Por favor ingrese cajas sueltas", Toast.LENGTH_LONG);
+                            errorToast.show();
+                        } else {
+                            sendData(v);
+                        }
+                    } else {
+                        sendData(v);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
@@ -158,7 +175,7 @@ public class ScanActivity extends AppCompatActivity {
         JSONObject json = jsonArray.getJSONObject(contador - 1);
 
         // La procesamos y enviamos a la API
-        String myUrl = "https://8e9b155425f9.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
+        String myUrl = "https://fc9771c892a2.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
 
         JSONObject body = new JSONObject();
         body.put("id", json.getInt("id"));
