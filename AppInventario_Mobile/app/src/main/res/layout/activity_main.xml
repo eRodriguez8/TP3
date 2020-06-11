@@ -15,7 +15,7 @@
         android:background="@drawable/roundedbutton"
         android:clickable="true"
         android:focusable="true"
-        android:text="INGRESAR"
+        android:text="@string/ingresar"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textStyle="bold"
@@ -36,10 +36,9 @@
         android:layout_marginBottom="67dp"
         android:background="@android:color/white"
         android:ems="10"
-        android:hint="Número de legajo..."
+        android:hint="@string/n_mero_de_legajo"
         android:inputType="number|text"
         android:maxLength="4"
-        android:numeric="integer"
         app:layout_constraintBottom_toTopOf="@+id/btnSend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -61,5 +60,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cencosud" />
+        app:srcCompat="@drawable/cencosud"
+        android:contentDescription="@string/todo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

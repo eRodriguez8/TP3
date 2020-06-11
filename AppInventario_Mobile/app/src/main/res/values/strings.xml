@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Inventario</string>
+    <string name="grabar">GRABAR</string>
+    <string name="conteo_inventario_sega">Conteo Inventario Sega</string>
+    <string name="documento">Documento</string>
+    <string name="usuario_inventario">Usuario Inventario</string>
+    <string name="ubicaci_n">Ubicación</string>
+    <string name="conteo_1_4">Conteo 1/4</string>
+    <string name="d_gito">Dígito</string>
+    <string name="vac_o">\".\" Vacío</string>
+    <string name="art_culo">Artículo</string>
+    <string name="cajas_sueltas">Cajas sueltas</string>
+    <string name="observaciones">Observaciones</string>
+    <string name="cajas">Cajas</string>
+    <string name="escanear">Escanear</string>
+    <string name="ingresar">INGRESAR</string>
+    <string name="n_mero_de_legajo">Número de legajo...</string>
+    <string name="todo">TODO</string>
 </resources>

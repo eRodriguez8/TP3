@@ -24,10 +24,6 @@ import org.json.JSONObject;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String LEGAJO = "";
-    public static final String DOCUMENTO = "";
-    public static int STATUS_VALUE = 0;
-    public static String SCAN_ERROR_TEXT = "Hubo un error al escanear. Por favor, intentelo nuevamente.";
     private JSONArray jsonArray;
     private Button btnLogin;
     private EditText user;
@@ -65,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view) throws ExecutionException, InterruptedException, JSONException {
         user = findViewById(R.id.legajo);
         legajo = user.getText().toString();
-        if(legajo.length() == 0) {
+        if (legajo.length() == 0) {
             Toast errorToast = Toast.makeText(MainActivity.this, "Por favor ingrese su número de legajo.", Toast.LENGTH_SHORT);
             errorToast.show();
         } else {
@@ -73,17 +69,20 @@ public class MainActivity extends AppCompatActivity {
             HttpRequest getRequest = new HttpRequest("GET", null);
             result = getRequest.execute(myUrl).get();
 
-            if(result == null) {
+            if (result == null) {
                 Toast errorToast = Toast.makeText(MainActivity.this, "Legajo " + legajo + " no contiene documento asociado", Toast.LENGTH_SHORT);
                 errorToast.show();
             } else {
                 documentJson = new JSONObject(result);
-                jsonArray = documentJson.getJSONArray("posiciones");
-                document = documentJson.getString("documento");
-                documentId = documentJson.getInt("id");
-                lContadas = documentJson.getInt("lContadas");
-                lTotales = documentJson.getInt("lTotales");
-
+                try {
+                    jsonArray = documentJson.getJSONArray("posiciones");
+                    document = documentJson.getString("documento");
+                    documentId = documentJson.getInt("id");
+                    lContadas = documentJson.getInt("lContadas");
+                    lTotales = documentJson.getInt("lTotales");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 if (lContadas > 0) {
                     showContinueDialog();
                 } else {
@@ -93,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-
-
             }
         }
     }
@@ -117,23 +114,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         })
-        .setNegativeButton("No, empezar de cero", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                String myUrl = "https://fdc3cc72568d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + documentId;
+                .setNegativeButton("No, empezar de cero", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        String myUrl = "https://fdc3cc72568d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + documentId;
 
-                HttpRequest putRequest = new HttpRequest("PUT", "");
-                try {
-                    putRequest.execute(myUrl).get();
-                    goToScanActivity(0);
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+                        HttpRequest putRequest = new HttpRequest("PUT", "");
+                        try {
+                            putRequest.execute(myUrl).get();
+                            goToScanActivity(0);
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
         // Create the AlertDialog object and return it
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -151,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
         JSONObject json = jsonArray.getJSONObject(index); //lContadas
 
         Intent dataIntent = new Intent(MainActivity.this, ScanActivity.class);
-        Bundle dataBundle = new Bundle();
         dataIntent.putExtra("DOCUMENTO", document);
         dataIntent.putExtra("LCONTADAS", index); //lContadas
         dataIntent.putExtra("LEGAJO", legajo);
@@ -161,10 +157,5 @@ public class MainActivity extends AppCompatActivity {
         dataIntent.putExtra("POSICIONES", lTotales);
         dataIntent.putExtra("RESULT", result);
         startActivity(dataIntent);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
     }
 }

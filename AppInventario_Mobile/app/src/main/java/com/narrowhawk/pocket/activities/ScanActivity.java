@@ -109,7 +109,7 @@ public class ScanActivity extends AppCompatActivity {
                         if (cajas.getText().toString().equals("")) {
                             errorToast = Toast.makeText(ScanActivity.this, "Por favor ingrese cajas", Toast.LENGTH_LONG);
                             errorToast.show();
-                        } else if (cajasSueltas.getText().toString().equals("")) {
+                        } else if (cajasSueltas.getText().toString().equals("") && cajasSueltas.isEnabled()) {
                             errorToast = Toast.makeText(ScanActivity.this, "Por favor ingrese cajas sueltas", Toast.LENGTH_LONG);
                             errorToast.show();
                         } else {
@@ -129,8 +129,7 @@ public class ScanActivity extends AppCompatActivity {
         });
     }
 
-    public void initializeScanner(View view)
-    {
+    public void initializeScanner(View view) {
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.CODE_128);
         integrator.setPrompt("Escanear Elemento");
@@ -144,8 +143,8 @@ public class ScanActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null) {
-            if(result.getContents() == null) {
+        if (result != null) {
+            if (result.getContents() == null) {
                 Toast.makeText(this, SCAN_ERROR_TEXT, Toast.LENGTH_LONG).show();
             } else {
                 try {
@@ -158,6 +157,7 @@ public class ScanActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
     private void BuildAndSendData(String data) throws JSONException {
         JSONObject json = jsonArray.getJSONObject(contador - 1);
         if (flag) {
