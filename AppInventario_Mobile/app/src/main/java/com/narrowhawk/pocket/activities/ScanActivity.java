@@ -1,16 +1,22 @@
 package com.narrowhawk.pocket.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -26,20 +32,20 @@ import java.util.concurrent.ExecutionException;
 public class ScanActivity extends AppCompatActivity {
     public static final String BARCODE = "";
     public static String SCAN_ERROR_TEXT = "Hubo un error al escanear. Por favor, intentelo nuevamente.";
-    private Button btnScanDigit;
-    private Button btnScanArticle;
-    private Button btnSend;
+    private ImageButton btnScanDigit;
+    private ImageButton btnScanArticle;
+    private ImageButton btnSend;
     private String legajo;
     private String tipoInventario;
     private TextView user;
     private TextView document;
     private TextView ubication;
     private TextView conteo;
-    private TextView articulo;
-    private TextView digito;
-    private TextView cajas;
-    private TextView cajasSueltas;
-    private TextView observaciones;
+    private TextInputLayout articulo;
+    private TextInputLayout digito;
+    private TextInputLayout cajas;
+    private TextInputLayout cajasSueltas;
+    private TextInputLayout observaciones;
     private int contador;
     private int posiciones;
     private JSONObject documentJson = null;
@@ -101,17 +107,13 @@ public class ScanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Toast errorToast;
-                    if (digito.getText().toString().equals("")) {
-                        errorToast = Toast.makeText(ScanActivity.this, "Por favor ingrese dígito", Toast.LENGTH_LONG);
-                        errorToast.show();
-                    } else if (!digito.getText().toString().equals(".")) {
-                        if (cajas.getText().toString().equals("")) {
-                            errorToast = Toast.makeText(ScanActivity.this, "Por favor ingrese cajas", Toast.LENGTH_LONG);
-                            errorToast.show();
-                        } else if (cajasSueltas.getText().toString().equals("") && cajasSueltas.isEnabled()) {
-                            errorToast = Toast.makeText(ScanActivity.this, "Por favor ingrese cajas sueltas", Toast.LENGTH_LONG);
-                            errorToast.show();
+                    if (digito.getEditText().getText().toString().equals("")) {
+                        digito.setError("Ingrese dígito.");
+                    } else if (!digito.getEditText().getText().toString().equals(".")) {
+                        if (cajas.getEditText().getText().toString().equals("")) {
+                            cajas.setError("Ingrese cajas.");
+                        } else if (cajasSueltas.getEditText().getText().toString().equals("") && cajasSueltas.isEnabled()) {
+                            cajasSueltas.setError("Ingrese cajas sueltas.");
                         } else {
                             sendData(v);
                         }
@@ -161,11 +163,11 @@ public class ScanActivity extends AppCompatActivity {
     private void BuildAndSendData(String data) throws JSONException {
         JSONObject json = jsonArray.getJSONObject(contador - 1);
         if (flag) {
-            articulo.setText(data);
+            articulo.getEditText().setText(data);
         } else {
-            digito.setText(data);
+            digito.getEditText().setText(data);
             if (data.equals(json.getString("etiqueta"))) {
-                articulo.setText(json.getString("ean13") + " - " + json.getString("descripcion"));
+                articulo.getEditText().setText(json.getString("ean13") + " - " + json.getString("descripcion"));
             }
         }
     }
@@ -175,18 +177,18 @@ public class ScanActivity extends AppCompatActivity {
         JSONObject json = jsonArray.getJSONObject(contador - 1);
 
         // La procesamos y enviamos a la API
-        String myUrl = "https://fdc3cc72568d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
+        String myUrl = "https://0cff4270f79d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
 
         JSONObject body = new JSONObject();
         body.put("id", json.getInt("id"));
         body.put("idDocumento", json.getInt("idDocumento"));
         body.put("usuarioInventario", legajo);
-        body.put("digito", digito.getText());
-        body.put("cajasSueltas", cajasSueltas.getText());
+        body.put("digito", digito.getEditText().getText());
+        body.put("cajasSueltas", cajasSueltas.getEditText().getText());
         body.put("tipoInventario", json.getString("tipoInventario"));
-        body.put("observaciones", observaciones.getText());
-        body.put("camadas", cajas.getText().toString().matches("") ? 0 : cajas.getText());
-        body.put("articulo", articulo.getText());
+        body.put("observaciones", observaciones.getEditText().getText());
+        body.put("camadas", cajas.getEditText().getText().toString().matches("") ? 0 : cajas.getEditText().getText());
+        body.put("articulo", articulo.getEditText().getText());
         body.put("etiqueta", json.getString("etiqueta"));
         body.put("ubicacion", json.getString("ubicacion"));
         body.put("ean13", json.getString("ean13"));
@@ -213,11 +215,11 @@ public class ScanActivity extends AppCompatActivity {
         json = jsonArray.getJSONObject(contador - 1);
         conteo.setText("Conteo " + contador + "/" + posiciones);
         ubication.setText(json.getString("ubicacion") + " - " + contador);
-        digito.setText("");
-        articulo.setText("");
-        cajas.setText("");
-        cajasSueltas.setText("");
-        observaciones.setText("");
+        digito.getEditText().setText("");
+        articulo.getEditText().setText("");
+        cajas.getEditText().setText("");
+        cajasSueltas.getEditText().setText("");
+        observaciones.getEditText().setText("");
         if (!json.getString("tipoInventario").equals("Camadas")) {
             cajasSueltas.setEnabled(false);
             cajasSueltas.setBackgroundColor(Color.LTGRAY);
@@ -225,5 +227,14 @@ public class ScanActivity extends AppCompatActivity {
             cajasSueltas.setEnabled(true);
             cajasSueltas.setBackgroundColor(Color.WHITE);
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 }

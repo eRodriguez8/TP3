@@ -1,11 +1,16 @@
 package com.narrowhawk.pocket.activities;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -14,6 +19,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.narrowhawk.pocket.requests.HttpRequest;
 import com.narrowhawk.pocket.R;
 
@@ -26,7 +32,7 @@ import java.util.concurrent.ExecutionException;
 public class MainActivity extends AppCompatActivity {
     private JSONArray jsonArray;
     private Button btnLogin;
-    private EditText user;
+    private TextInputLayout user;
     private String legajo;
     private JSONObject documentJson;
     private String document;
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        user = findViewById(R.id.legajo);
         this.btnLogin = findViewById(R.id.btnSend);
         this.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,13 +66,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view) throws ExecutionException, InterruptedException, JSONException {
-        user = findViewById(R.id.legajo);
-        legajo = user.getText().toString();
+        legajo = user.getEditText().getText().toString();
         if (legajo.length() == 0) {
-            Toast errorToast = Toast.makeText(MainActivity.this, "Por favor ingrese su número de legajo.", Toast.LENGTH_SHORT);
-            errorToast.show();
+            user.setError("Por favor ingrese su número de legajo.");
         } else {
-            String myUrl = "https://fdc3cc72568d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + legajo;
+            String myUrl = "https://0cff4270f79d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + legajo;
             HttpRequest getRequest = new HttpRequest("GET", null);
             result = getRequest.execute(myUrl).get();
 
@@ -116,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         })
                 .setNegativeButton("No, empezar de cero", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        String myUrl = "https://fdc3cc72568d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + documentId;
+                        String myUrl = "https://0cff4270f79d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + documentId;
 
                         HttpRequest putRequest = new HttpRequest("PUT", "");
                         try {
@@ -157,5 +162,14 @@ public class MainActivity extends AppCompatActivity {
         dataIntent.putExtra("POSICIONES", lTotales);
         dataIntent.putExtra("RESULT", result);
         startActivity(dataIntent);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 }

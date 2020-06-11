@@ -3,10 +3,10 @@
     <string name="grabar">GRABAR</string>
     <string name="conteo_inventario_sega">Conteo Inventario Sega</string>
     <string name="documento">Documento</string>
-    <string name="usuario_inventario">Usuario Inventario</string>
+    <string name="usuario_inventario">Legajo</string>
     <string name="ubicaci_n">Ubicación</string>
     <string name="conteo_1_4">Conteo 1/4</string>
-    <string name="d_gito">Dígito</string>
+    <string name="d_gito">Dígito (\".\" Vacío)</string>
     <string name="vac_o">\".\" Vacío</string>
     <string name="art_culo">Artículo</string>
     <string name="cajas_sueltas">Cajas sueltas</string>
