@@ -11,11 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.narrowhawk.pocket.activities.ResultsActivity"></activity>
         <activity android:name="com.narrowhawk.pocket.activities.ScanActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name="com.narrowhawk.pocket.activities.MainActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name="com.narrowhawk.pocket.activities.AnyOrientationCaptureActivity"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"

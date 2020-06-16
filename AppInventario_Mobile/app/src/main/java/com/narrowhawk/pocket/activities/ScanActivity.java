@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,11 +16,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.narrowhawk.pocket.R;
 import com.narrowhawk.pocket.requests.HttpRequest;
+import com.narrowhawk.pocket.utils.CustomHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,6 +55,9 @@ public class ScanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
+
+        Thread.setDefaultUncaughtExceptionHandler(new CustomHandler(this));
+
         final Bundle data = getIntent().getExtras();
         legajo = data.getString("LEGAJO");
         user = findViewById(R.id.user);
@@ -107,28 +109,33 @@ public class ScanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    if (digito.getEditText().getText().toString().equals("")) {
-                        digito.setError("Ingrese dígito.");
-                    } else if (!digito.getEditText().getText().toString().equals(".")) {
-                        if (cajas.getEditText().getText().toString().equals("")) {
-                            cajas.setError("Ingrese cajas.");
-                        } else if (cajasSueltas.getEditText().getText().toString().equals("") && cajasSueltas.isEnabled()) {
-                            cajasSueltas.setError("Ingrese cajas sueltas.");
-                        } else {
-                            sendData(v);
-                        }
-                    } else {
-                        sendData(v);
-                    }
-                } catch (JSONException e) {
+                    btnSendOnCreate(v);
+                } catch (ExecutionException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                } catch (ExecutionException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
+    }
+
+    private void btnSendOnCreate(View v) throws InterruptedException, ExecutionException, JSONException {
+        if (digito.getEditText().getText().toString().equals("")) {
+            digito.setError("Ingrese dígito.");
+        } else if (!digito.getEditText().getText().toString().equals(".")) {
+            if (cajas.getEditText().getText().toString().equals("")) {
+                cajas.setError("Ingrese cajas.");
+            } else if (cajasSueltas.getEditText().getText().toString().equals("") && cajasSueltas.isEnabled()) {
+                cajasSueltas.setError("Ingrese cajas sueltas.");
+            } else {
+                //int error = 8/0;
+                sendData(v);
+            }
+        } else {
+            sendData(v);
+        }
     }
 
     public void initializeScanner(View view) {
@@ -177,7 +184,7 @@ public class ScanActivity extends AppCompatActivity {
         JSONObject json = jsonArray.getJSONObject(contador - 1);
 
         // La procesamos y enviamos a la API
-        String myUrl = "https://0cff4270f79d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
+        String myUrl = "https://2860aa3af213.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/xPosicion";
 
         JSONObject body = new JSONObject();
         body.put("id", json.getInt("id"));

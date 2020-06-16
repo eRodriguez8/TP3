@@ -2,10 +2,12 @@ package com.narrowhawk.pocket.activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.narrowhawk.pocket.requests.HttpRequest;
 import com.narrowhawk.pocket.R;
+import com.narrowhawk.pocket.utils.CustomHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Thread.setDefaultUncaughtExceptionHandler(new CustomHandler(this));
+        if (getIntent().getBooleanExtra("hasCrashed", false)) {
+            showErrorDialog();
+        }
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         user = findViewById(R.id.legajo);
@@ -70,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         if (legajo.length() == 0) {
             user.setError("Por favor ingrese su número de legajo.");
         } else {
-            String myUrl = "https://0cff4270f79d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + legajo;
+            String myUrl = "https://2860aa3af213.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + legajo;
             HttpRequest getRequest = new HttpRequest("GET", null);
             result = getRequest.execute(myUrl).get();
 
@@ -80,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 documentJson = new JSONObject(result);
                 try {
+                    //documentJson.getInt("error");
                     jsonArray = documentJson.getJSONArray("posiciones");
                     document = documentJson.getString("documento");
                     documentId = documentJson.getInt("id");
@@ -102,13 +112,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showContinueDialog() {
-        // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogCustom);
-        // Get the layout inflater
         LayoutInflater inflater = this.getLayoutInflater();
-
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
         builder.setView(inflater.inflate(R.layout.dialog_continue, null));
         builder.setPositiveButton("Sí, continuar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -119,24 +124,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         })
-                .setNegativeButton("No, empezar de cero", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        String myUrl = "https://0cff4270f79d.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + documentId;
+        .setNegativeButton("No, empezar de cero", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                String myUrl = "https://2860aa3af213.ngrok.io/Sua.Inventario.Api/api/v1/ConteoSega/" + documentId;
 
-                        HttpRequest putRequest = new HttpRequest("PUT", "");
-                        try {
-                            putRequest.execute(myUrl).get();
-                            goToScanActivity(0);
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-        // Create the AlertDialog object and return it
+                HttpRequest putRequest = new HttpRequest("PUT", "");
+                try {
+                    putRequest.execute(myUrl).get();
+                    goToScanActivity(0);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         AlertDialog dialog = builder.create();
         dialog.show();
 
@@ -147,6 +152,20 @@ public class MainActivity extends AppCompatActivity {
         layoutParams.weight = 10;
         btnPositive.setLayoutParams(layoutParams);
         btnNegative.setLayoutParams(layoutParams);
+    }
+
+    private void showErrorDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogCustom);
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.dialog_error, null));
+        builder.setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     public void goToScanActivity(int index) throws JSONException {
