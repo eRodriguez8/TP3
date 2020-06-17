@@ -17,7 +17,6 @@ public class CustomHandler implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread thread, final Throwable ex) {
         Log.println(1, "Error", ex.getMessage());
-        Log.e("error", "asdlfjskfjhgsdkjfghskjdfghskldfjghskljdfhgljksdhg");
         Intent intent = new Intent(activity, MainActivity.class);
         intent.putExtra("hasCrashed", true);
         activity.startActivity(intent);
